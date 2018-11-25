@@ -1,0 +1,18 @@
+Get directory to process from command line args
+get projname from project
+Make sample project fully generic
+Rename DB to Entities
+
+Handle context file not found
+Handle entity class not found
+Improve regular expressions
+
+Option to generate controllers as synchronous
+Option to add swagger to Startup.cs
+Option to add database context to Startup.cs
+Option to generate for .net framework
+Option to generate logic classes
+Option to generate unit tests
+Update existing controller methods without overwrite of existing ones
+Update existing CQRS classes without overwrite of existing ones
+Add support for 1-to-many queries, e.g., Get all Customers for a given AccountManager
