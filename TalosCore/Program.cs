@@ -34,7 +34,7 @@ namespace TalosCore
         static void Usage()
         {
             Console.WriteLine("Usage:");
-            Console.WriteLine("SnapCoreService.exe <path-to-core-ef-project>");
+            Console.WriteLine("dotnet TalosCore.dll <path-to-core-ef-project>");
         }
     }
 }
