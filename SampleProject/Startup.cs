@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyProject.Models;
+using SampleProject.Models;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Email
+namespace SampleProject
 {
     public class Startup
     {

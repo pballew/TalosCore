@@ -17,7 +17,8 @@ namespace TalosCore
 
 
             // TODO: get projname from project
-            string projName = "MyProject";
+            Console.WriteLine("Searching for EF project name");
+            string projName = EFParser.GetProjectName(projDir);
 
             Console.WriteLine("Searching for EF class source files");
             EfClassInfoList classInfoList = EFParser.GetEfClassInfoList(projDir);

@@ -13,6 +13,22 @@ namespace TalosCore
 
     public class EFParser
     {
+        public static string GetProjectName(string startDirectory)
+        {
+            string programFileName = "Program.cs";
+            string fullPathToFile = Path.Combine(startDirectory, programFileName);
+            if (File.Exists(fullPathToFile))
+            {
+                var source = File.ReadAllText(fullPathToFile);
+                var match = Regex.Match(source, @"namespace (.+)");
+                if (match.Length > 0)
+                {
+                    return match.Groups[1].ToString();
+                }
+            }
+            return null;
+        }
+
         public static EfClassInfoList GetEfClassInfoList(string startDirectory)
         {
             var efClassInfoList = new EfClassInfoList();
@@ -149,7 +165,7 @@ namespace TalosCore
 
         private static bool IsEntity(string type)
         {
-            switch(type)
+            switch (type)
             {
                 case "bool":
                 case "bool?":

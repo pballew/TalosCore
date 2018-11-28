@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MyProject.Models
+namespace SampleProject.Models
 {
     public class EmailContext : DbContext
     {
