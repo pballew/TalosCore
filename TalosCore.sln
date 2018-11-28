@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalosCore", "TalosCore\TalosCore.csproj", "{242CBC6D-0428-4576-B483-4F4900497F6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleCoreService", "testdata\SampleCoreService.csproj", "{77C0ECF8-CF03-4095-BB03-25DCCF86E95A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleCoreService", "SampleProject\SampleCoreService.csproj", "{77C0ECF8-CF03-4095-BB03-25DCCF86E95A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
