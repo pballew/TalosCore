@@ -1,4 +1,4 @@
-Rename DB to Entities
+Use entity namespace from context file for using statements in generated code
 Add Delete controller methods
 
 Handle context file not found
