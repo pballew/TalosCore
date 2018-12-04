@@ -1,5 +1,5 @@
-get projname from project
 Rename DB to Entities
+Add Delete controller methods
 
 Handle context file not found
 Handle entity class not found

@@ -5,8 +5,4 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="del $(SolutionDir)testdata\Controllers\*.cs&#xD;&#xA;del $(SolutionDir)testdata\Cqrs\*.cs" />
-  </Target>
-
 </Project>
