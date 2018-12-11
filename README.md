@@ -12,7 +12,7 @@ See the project in the SampleProject directory for an example of what you should
 
 TalosCore is a dotnet Core console application.  As such, it should be run from the command line like this:
 ```
-dotnet run <path to TalosCore.dll> <path to project with EF entities>
+dotnet <path to TalosCore.dll> <path to project with EF entities>
 ```
 Example:
 ```
