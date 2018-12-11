@@ -16,6 +16,6 @@ dotnet run <path to TalosCore.dll> <path to project with EF entities>
 ```
 Example:
 ```
-C:\git\TalosCore> dotnet run .\taloscore\bin\release\netcoreapp2.1\TalosCore.dll .\SampleProject
+C:\git\TalosCore> dotnet .\taloscore\bin\release\netcoreapp2.1\TalosCore.dll .\SampleProject
 ```
 I would appreciate any feedback or suggestions you have on your experience using TalosCore, and feel free to fork the project and send pull requests with bug fixes and enhancements.
