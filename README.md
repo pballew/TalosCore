@@ -10,12 +10,12 @@ The resulting controller methods are not expected to be the final API for all pr
 ## How To Use TalosCore
 See the project in the SampleProject directory for an example of what you should start with. It is a dotnet Core MVC project with a database context and some entities defined. You can easily create one using the Visual Studio project template for *ASP.NET Core Web Application*. Pick the application type API and then create your project. Add Entity Framework Core to the project and add your database context and entity classes. After that, TalosCore will take care of the rest.
 
-TalosCore is a dotnet Core console application.  As such, it should be run from the command line like this:
+TalosCore is a dotnet Core console application. You can install it as a dotnet core global tool by running this command:
 ```
-dotnet <path to TalosCore.dll> <path to project with EF entities>
+dotnet tool install -g TalosCore
 ```
-Example:
+After installing, you can run TalosCore as follows:
 ```
-C:\git\TalosCore> dotnet .\taloscore\bin\release\netcoreapp2.1\TalosCore.dll .\SampleProject
+C:\git\TalosCore> TalosCore .\SampleProject
 ```
 I would appreciate any feedback or suggestions you have on your experience using TalosCore, and feel free to fork the project and send pull requests with bug fixes and enhancements.
