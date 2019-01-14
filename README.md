@@ -16,6 +16,6 @@ dotnet tool install -g TalosCore
 ```
 After installing, you can run TalosCore as follows:
 ```
-C:\git\TalosCore> TalosCore .\SampleProject
+TalosCore .\SampleProject
 ```
 I would appreciate any feedback or suggestions you have on your experience using TalosCore, and feel free to fork the project and send pull requests with bug fixes and enhancements.
