@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -20,7 +21,7 @@ namespace TalosCore
             if (File.Exists(fullPathToFile))
             {
                 var source = File.ReadAllText(fullPathToFile);
-                var match = Regex.Match(source, @"namespace (.+)");
+                var match = Regex.Match(source, @"namespace (\w+)[\W*]");
                 if (match.Length > 0)
                 {
                     return match.Groups[1].ToString();
@@ -32,11 +33,50 @@ namespace TalosCore
         public static EfClassInfoList GetEfClassInfoList(string startDirectory)
         {
             var efClassInfoList = new EfClassInfoList();
-            var dbClassInfoFile = GetDbContextFile(startDirectory);
-            efClassInfoList.DbContextName = GetDbContextName(dbClassInfoFile);
-            efClassInfoList.DbNamespace = GetDbNamespace(dbClassInfoFile);
-            efClassInfoList.EfClasses = GetEfClasses(dbClassInfoFile);
+            string dbContextFilePath = GetDbContextFilePath(startDirectory);
+            if (dbContextFilePath == null)
+            {
+                throw new Exception($"No DbContext file found");
+            }
+
+            efClassInfoList.DbContextName = GetDbContextName(dbContextFilePath);
+            if (efClassInfoList.DbContextName == null)
+            {
+                throw new Exception($"No DbContextName found");
+            }
+
+            efClassInfoList.DbNamespace = GetDbNamespace(dbContextFilePath);
+            if (efClassInfoList.DbNamespace == null)
+            {
+                throw new Exception($"No DbNamespace found");
+            }
+
+            efClassInfoList.EfClasses = GetEfClasses(dbContextFilePath);
+            if (efClassInfoList.EfClasses == null || efClassInfoList.EfClasses.Count == 0)
+            {
+                throw new Exception($"No EfClasses found");
+            }
+
             return efClassInfoList;
+        }
+
+        public static string GetProjectPath(string startDirectory)
+        {
+            var dirs = Directory.EnumerateDirectories(startDirectory);
+            foreach (var dir in dirs)
+            {
+                if (Directory.GetFiles(dir, "*.csproj").Length > 0)
+                {
+                    return dir;
+                }
+
+                var path = GetProjectPath(dir);
+                if (!string.IsNullOrWhiteSpace(path))
+                {
+                    return path;
+                }
+            }
+            return null;
         }
 
         // TODO: Handle context file not found
@@ -70,7 +110,7 @@ namespace TalosCore
             return null;
         }
 
-        public static string GetDbContextFile(string startDirectory)
+        public static string GetDbContextFilePath(string startDirectory)
         {
             var dirs = Directory.EnumerateDirectories(startDirectory);
             foreach (var dir in dirs)
@@ -84,7 +124,11 @@ namespace TalosCore
                         return file;
                     }
                 }
-                GetDbContextFile(dir);
+                var path = GetDbContextFilePath(dir);
+                if (!string.IsNullOrWhiteSpace(path))
+                {
+                    return path;
+                }
             }
             return null;
         }
