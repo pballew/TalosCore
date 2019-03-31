@@ -2,7 +2,7 @@
   "profiles": {
     "SnapCoreService": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Projects\\git\\ClickTrackingMicroservice"
+      "commandLineArgs": "C:\\Users\\pballewlocal\\git\\MyMe"
     }
   }
 }

@@ -58,7 +58,7 @@
             string filename = $"{_fileDir}{className}.cs";
 
             WriteClassHeader(className, projName, dbNamespace, filename);
-            WriteProperties(efClass, filename);
+            WriteCreateProperties(efClass, filename);
             WriteCreateConvertConstructor(className, efClass, filename);
             WriteClassFooter(filename);
         }
@@ -68,9 +68,7 @@
             string filename = $"{_fileDir}{className}.cs";
 
             WriteClassHeader(className, projName, dbNamespace, filename);
-            WriteIdProperty(filename);
-            WriteProperties(efClass, filename);
-            WriteConvertConstructor(className, efClass, filename);
+            WriteUpdateProperties(efClass, filename);
             WriteClassFooter(filename);
         }
 
@@ -100,13 +98,9 @@
             _fileWriter.WriteStringToFile("{", filename);
             foreach (var prop in efClass.Properties)
             {
-                if (prop.Name == "Id")
+                if (prop.IsEntity || prop.Name == "Id" || prop.Name == "CreatedUtc")
                 {
                     continue;
-                }
-                if (prop.IsEntity)
-                {
-                    _fileWriter.WriteStringToFile($"{prop.Name}Id = entity.{prop.Name}.Id;", filename);
                 }
                 else
                 {
@@ -186,6 +180,44 @@
         private void WriteIdProperty(string filename)
         {
             _fileWriter.WriteStringToFile("public int Id { get; set; }", filename);
+        }
+
+        private void WriteCreateProperties(EfClass efClass, string filename)
+        {
+            foreach (var prop in efClass.Properties)
+            {
+                if (prop.Name == "Id" || prop.Name == "CreatedUtc")
+                {
+                    continue;
+                }
+                else if (prop.IsEntity)
+                {
+                    _fileWriter.WriteStringToFile($"public int {prop.Name}Id" + " { get; set; }", filename);
+                }
+                else
+                {
+                    _fileWriter.WriteStringToFile($"public {prop.Type} {prop.Name}" + " { get; set; }", filename);
+                }
+            }
+        }
+
+        private void WriteUpdateProperties(EfClass efClass, string filename)
+        {
+            foreach (var prop in efClass.Properties)
+            {
+                if (prop.Name == "CreatedUtc")
+                {
+                    continue;
+                }
+                else if (prop.IsEntity)
+                {
+                    _fileWriter.WriteStringToFile($"public int {prop.Name}Id" + " { get; set; }", filename);
+                }
+                else
+                {
+                    _fileWriter.WriteStringToFile($"public {prop.Type} {prop.Name}" + " { get; set; }", filename);
+                }
+            }
         }
 
         private void WriteProperties(EfClass efClass, string filename)

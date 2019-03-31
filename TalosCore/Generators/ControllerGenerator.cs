@@ -140,11 +140,11 @@ namespace TalosCore.Generators
             string cqrsClassName = _nameGenerator.GetCqrsAlias() + "." + _nameGenerator.GetCqrsGetListResponseClass(efClass.Name);
 
             _fileWriter.WriteStringToFile("[HttpGet(\"" + getListMethod + "\")]", controllerFile);
-            _fileWriter.WriteStringToFile($"[Produces(\"application/json\", Type = typeof(List<{cqrsClassName}>))]", controllerFile);
+            _fileWriter.WriteStringToFile($"[Produces(\"application/json\", Type = typeof({cqrsClassName}))]", controllerFile);
             _fileWriter.WriteStringToFile($"public async Task<IActionResult> {getListMethod}()", controllerFile);
             _fileWriter.WriteStringToFile("{", controllerFile);
             _fileWriter.WriteStringToFile($"var list = await _context.{efClass.CollectionName}.ToListAsync();", controllerFile);
-            _fileWriter.WriteStringToFile("return Ok(list);", controllerFile);
+            _fileWriter.WriteStringToFile($"return Ok(new {cqrsClassName}(list));", controllerFile);
             _fileWriter.WriteStringToFile("}", controllerFile);
         }
 
@@ -182,7 +182,7 @@ namespace TalosCore.Generators
 
             foreach (var prop in efClass.Properties)
             {
-                if (prop.IsDbGenerated)
+                if (prop.IsDbGenerated || prop.Name == "CreatedUtc")
                 {
                     continue;
                 }
@@ -235,7 +235,7 @@ namespace TalosCore.Generators
 
             foreach (var prop in efClass.Properties)
             {
-                if (prop.IsDbGenerated)
+                if (prop.IsDbGenerated || prop.Name == "CreatedUtc")
                 {
                     continue;
                 }

@@ -27,6 +27,10 @@ namespace TalosCore
                 IndentLevels[filename] = 0;
             }
             data = data.Trim();
+            if (data.Length > 0 && data[0] == '.')
+            {
+                data = _indentString + data;
+            }
 
             if (!(data.Contains("{") && data.Contains("}"))) // Handle properties with parens on same line
             {
