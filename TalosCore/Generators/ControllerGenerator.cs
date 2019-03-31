@@ -125,7 +125,7 @@ namespace TalosCore.Generators
             _fileWriter.WriteStringToFile("using System.Threading.Tasks;", filename);
             _fileWriter.WriteStringToFile("using Microsoft.AspNetCore.Mvc;", filename);
             _fileWriter.WriteStringToFile("using Microsoft.EntityFrameworkCore;", filename);
-            _fileWriter.WriteStringToFile($"using DB = {projName}.Models;", filename);
+            _fileWriter.WriteStringToFile($"using DB = {_efClassInfoList.DbNamespace};", filename);
             _fileWriter.WriteStringToFile("", filename);
         }
 

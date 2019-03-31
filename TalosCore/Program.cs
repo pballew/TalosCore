@@ -19,12 +19,27 @@ namespace TalosCore
             {
                 Console.WriteLine("Searching for project path");
                 string projectPath = EFParser.GetProjectPath(StartDirectory);
+                if (projectPath == null)
+                {
+                    Console.WriteLine("Project path not found");
+                    return -1;
+                }
 
                 Console.WriteLine("Searching for EF project name");
                 string projectNamespace = EFParser.GetProjectName(projectPath);
+                if (projectNamespace == null)
+                {
+                    Console.WriteLine("EF project name not found");
+                    return -1;
+                }
 
                 Console.WriteLine("Searching for EF class source files");
                 EfClassInfoList classInfoList = EFParser.GetEfClassInfoList(projectPath);
+                if (classInfoList.EfClasses.Count == 0)
+                {
+                    Console.WriteLine("No EF class source files found");
+                    return -1;
+                }
 
                 Console.WriteLine("Creating Cqrs classes");
                 var cqrsGen = new CqrsGenerator(new FileWriter(), new NameGenerator());

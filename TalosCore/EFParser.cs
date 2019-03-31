@@ -60,20 +60,20 @@ namespace TalosCore
             return efClassInfoList;
         }
 
-        public static string GetProjectPath(string startDirectory)
+        public static string GetProjectPath(string path)
         {
-            var dirs = Directory.EnumerateDirectories(startDirectory);
+            if (Directory.GetFiles(path, "*.csproj").Length > 0)
+            {
+                return path;
+            }
+
+            var dirs = Directory.EnumerateDirectories(path);
             foreach (var dir in dirs)
             {
-                if (Directory.GetFiles(dir, "*.csproj").Length > 0)
+                var projPath = GetProjectPath(dir);
+                if (!string.IsNullOrWhiteSpace(projPath))
                 {
-                    return dir;
-                }
-
-                var path = GetProjectPath(dir);
-                if (!string.IsNullOrWhiteSpace(path))
-                {
-                    return path;
+                    return projPath;
                 }
             }
             return null;
