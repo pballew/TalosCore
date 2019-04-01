@@ -18,4 +18,4 @@ After installing, you can run TalosCore like this:
 ```
 TalosCore .\SampleProject
 ```
-I would appreciate any feedback about your experience using TalosCore or suggestions you have to improve it. Feel free to fork the project and send pull requests with bug fixes and enhancements.
+I would appreciate any feedback about your experience using TalosCore or suggestions you have to improve it.  Email me at pballew@gmail.com.  Feel free to fork the project and send pull requests with bug fixes and enhancements.
