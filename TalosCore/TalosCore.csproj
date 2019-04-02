@@ -23,7 +23,7 @@ It uses definitions of Entity Framework Core entities and generates REST interfa
 The API is a simple pattern of GetList, Get, Create, and Update--basic CRUD operations (though Delete isn't there just yet).
 
 The resulting controller methods are not expected to be the final API for all projects, but is a baseline starting point that you can enhance to add relationships and logic to.</Description>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
